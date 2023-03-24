@@ -31,9 +31,9 @@ const SecondChat = () => {
           {fetchErr && <p>{fetchErr}</p>}
           {getData && (
             <div>
-              {getData.map((getData, ind) => {
+              {getData.map((curData, ind) => {
                 <p key={ind}>
-                  {getData.title} {console.log(getData.title)}
+                  {curData.title} {console.log(curData.title)}
                 </p>;
               })}
             </div>
