@@ -27,14 +27,16 @@ const SecondChat = () => {
         <h2 className="bg-red-500 w-max rounded-lg px-2 text-white mb-2">
           user2
         </h2>
-        <div className="border-2 rounded-lg p-2 w-96 h-96 flex flex-col-reverse">
+        <div className="border-2 rounded-lg p-2 w-96 h-96 flex flex-col-reverse overflow-y-auto">
           {fetchErr && <p>{fetchErr}</p>}
           {getData && (
             <div>
               {getData.map((curData, ind) => {
-                <p key={ind}>
-                  {curData.title} {console.log(curData.title)}
-                </p>;
+                return (
+                  <p key={ind} className="my-2 rounded-sm bg-gray-200 p-1">
+                    {curData.title} {console.log(curData.title)}
+                  </p>
+                );
               })}
             </div>
           )}
