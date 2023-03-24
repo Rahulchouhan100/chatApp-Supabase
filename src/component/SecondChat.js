@@ -8,6 +8,14 @@ const SecondChat = () => {
   useEffect(() => {
     const fetchData = async () => {
       const { data, error } = await supabase.from("chatdata").select();
+      if (error) {
+        setFetchErr("Could not fetch the data");
+        setGetData(null);
+      }
+      if (data) {
+        setGetData(data);
+        setFetchErr(null);
+      }
     };
 
     fetchData();
@@ -19,10 +27,17 @@ const SecondChat = () => {
         <h2 className="bg-red-500 w-max rounded-lg px-2 text-white mb-2">
           user2
         </h2>
-        <div className="border-2 rounded-lg p-2 w-96 h-96 flex flex-col-reverse overflow-y-hidden">
-          <div>
-            <p>hello</p>
-          </div>
+        <div className="border-2 rounded-lg p-2 w-96 h-96 flex flex-col-reverse">
+          {fetchErr && <p>{fetchErr}</p>}
+          {getData && (
+            <div>
+              {getData.map((getData, ind) => {
+                <p key={ind}>
+                  {getData.title} {console.log(getData.title)}
+                </p>;
+              })}
+            </div>
+          )}
         </div>
         <div className="flex mt-5 w-[26rem] gap-2">
           <input type="text" className="border-2 w-4/5" />
